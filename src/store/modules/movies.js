@@ -1,5 +1,3 @@
-
-
 const moviesStore = {
   namespaced: true,
   state: {},

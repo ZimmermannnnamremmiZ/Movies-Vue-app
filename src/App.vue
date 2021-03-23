@@ -10,9 +10,18 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "App",
   components: {},
+  mounted() {
+    // один из жизненных циклов
+    this.fetchMovies();
+  },
+  methods: {
+    ...mapActions("movies", ["fetchMovies"]),
+  },
 };
 </script>
 

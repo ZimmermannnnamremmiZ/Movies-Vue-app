@@ -15,8 +15,7 @@ import { mapActions } from "vuex";
 export default {
   name: "App",
   components: {},
-  mounted() {
-    // один из жизненных циклов
+  mounted() {  // один из жизненных циклов (Lifecycle hooks), судя по всему работает при загрузке компоненты
     this.fetchMovies();
   },
   methods: {

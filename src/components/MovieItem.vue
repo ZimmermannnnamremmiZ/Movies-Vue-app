@@ -86,5 +86,4 @@ export default {
   font-size: 14px;
   color: #fff;
 }
-
 </style>

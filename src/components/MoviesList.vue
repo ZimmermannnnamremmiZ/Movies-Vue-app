@@ -8,8 +8,8 @@
           <!-- необходимо указать :key, т.к. Vue отслеживает, если элементы одинаковые, то он будет пытаться оптимизировать и убрать повторяющиеся элементы -->
           <BCol cols="3" v-for="(movie, key) in list" :key="key">
             <MovieItem
-            :movie="movie"
-            @mouseover.native="onMouseOver(movie.Poster)"
+              :movie="movie"
+              @mouseover.native="onMouseOver(movie.Poster)"
             />
           </BCol>
         </template>
@@ -45,8 +45,8 @@ export default {
   methods: {
     onMouseOver(poster) {
       this.$emit("changePoster", poster);
-    }
-  }
+    },
+  },
 };
 </script>
 

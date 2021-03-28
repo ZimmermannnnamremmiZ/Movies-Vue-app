@@ -24,7 +24,7 @@ const moviesStore = {
     slicedIDs: ({ top250IDs }) => (from, to) => top250IDs.slice(from, to),
     currentPage: ({ currentPage }) => currentPage,
     moviesPerPage: ({ moviesPerPage }) => moviesPerPage,
-    moviesLength: ({ top250IDs }) => Object.keys(top250IDs).length
+    moviesLength: ({ top250IDs }) => Object.keys(top250IDs).length,
   },
   mutations: {
     [MOVIES](state, value) {
@@ -33,7 +33,7 @@ const moviesStore = {
     },
     [CURRENT_PAGE](state, value) {
       state.currentPage = value;
-    }
+    },
   },
   actions: {
     initMoviesStore: {
@@ -62,8 +62,8 @@ const moviesStore = {
     },
     changeCurrentPage({ commit, dispatch }, page) {
       commit(CURRENT_PAGE, page);
-      dispatch("fetchMovies")
-    }
+      dispatch("fetchMovies");
+    },
   },
 };
 

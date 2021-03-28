@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Loader />
     <PosterBg :poster="posterBg" />
     <!-- poster из PosterBg -->
     <MoviesList :list="moviesList" @changePoster="onChangePoster" />
@@ -18,6 +19,7 @@ import { mapActions, mapGetters } from "vuex";
 import MoviesList from "@/components/MoviesList";
 import PosterBg from "@/components/PosterBg";
 import MoviesPagination from "@/components/MoviesPagination";
+import Loader from "@/components/Loader";
 
 export default {
   name: "App",
@@ -25,6 +27,7 @@ export default {
     MoviesList,
     PosterBg,
     MoviesPagination,
+    Loader,
   },
   data: () => ({
     posterBg: "", // чтобы передать в :poster в <PosterBg>

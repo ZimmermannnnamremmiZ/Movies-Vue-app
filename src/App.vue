@@ -2,6 +2,12 @@
   <div id="app">
     <PosterBg :poster="posterBg"/> <!-- poster из PosterBg -->
     <MoviesList :list="moviesList" @changePoster="onChangePoster"/>
+    <MoviesPagination
+      :current-page="currentPage"
+      :per-page="moviesPerPage"
+      :total="moviesLength"
+      @pageChanged="onPageChanged"
+      /> <!-- props'ы пишутся через дефис -->
   </div>
 </template>
 
@@ -9,26 +15,46 @@
 import { mapActions, mapGetters } from "vuex";
 import MoviesList from "@/components/MoviesList";
 import PosterBg from "@/components/PosterBg";
+import MoviesPagination from "@/components/MoviesPagination"
 
 export default {
   name: "App",
   components: {
     MoviesList,
-    PosterBg
+    PosterBg,
+    MoviesPagination
   },
   data: () => ({
     posterBg: "" // чтобы передать в :poster в <PosterBg>
   }),
   computed: {
-    ...mapGetters("movies", ["moviesList"]),
+    ...mapGetters("movies", [
+      "moviesList",
+      "currentPage",
+      "moviesPerPage",
+      "moviesLength"
+      ]),
   },
-  methods: {
-    ...mapActions("movies", ["fetchMovies"]),
-    onChangePoster(poster) {
-      this.posterBg = poster; // переопределяется при наведении на элемент
+  watch: { // watch позволяет следить за изменениями в каком-либо объекте
+    "$route.query": {
+      handler: "onPageQueryChange",
+      immediate: true, // при загрузке так же отрабатывает watcher
+      deep: true // отслеживать внутренние изменения и реагировать на них
     }
   },
-};
+  methods: {
+    ...mapActions("movies", ["changeCurrentPage"]),
+    onPageQueryChange({ page = 1 }) {
+      this.changeCurrentPage(Number(page))
+    },
+    onChangePoster(poster) {
+      this.posterBg = poster; // переопределяется при наведении на элемент
+    },
+    onPageChanged(page) {
+      this.$router.push({ query: { page } }); // теперь есть query параметры
+    }
+  },
+}
 </script>
 
 <style>

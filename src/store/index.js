@@ -4,7 +4,8 @@ import movies from "./modules/movies";
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({ // инициализируется рутовая store общая
+const store = new Vuex.Store({
+  // инициализируется рутовая store общая
   state: {},
   mutations: {},
   actions: {},
@@ -13,6 +14,6 @@ const store = new Vuex.Store({ // инициализируется рутова�
   },
 });
 
-store.dispatch('initMoviesStore');
+store.dispatch("initMoviesStore");
 
 export default store;

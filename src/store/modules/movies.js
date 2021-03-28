@@ -26,17 +26,20 @@ const moviesStore = {
     moviesPerPage: ({ moviesPerPage }) => moviesPerPage,
   },
   mutations: {
-    [MOVIES](state, value) { // квадратные скобки, т.к. вычисляемое свойство объекта
+    [MOVIES](state, value) {
+      // квадратные скобки, т.к. вычисляемое свойство объекта
       state.movies = value;
     },
   },
   actions: {
-    initMoviesStore: { // рутовый action (для вызова из store/index.js)
-      handler({ dispatch }) { // dispatch позволяет вызвать любой action из текущей store
+    initMoviesStore: {
+      // рутовый action (для вызова из store/index.js)
+      handler({ dispatch }) {
+        // dispatch позволяет вызвать любой action из текущей store
         // теперь можно использовать несколько dispatch, т.к. есть "обёртка"
         dispatch("fetchMovies");
       },
-      root: true // это означает, что данный метод будет вынесен из модуля и будет доступен откуда угодно
+      root: true, // это означает, что данный метод будет вынесен из модуля и будет доступен откуда угодно
     },
     async fetchMovies({ getters, commit }) {
       try {

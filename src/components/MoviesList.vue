@@ -2,7 +2,7 @@
   <div>
     <!-- теги Bootstrap -->
     <BContainer>
-      <h3 class="list-title">IMDB Top 250</h3>
+      <h3 class="list-title">{{ listTitle }}</h3>
       <BRow>
         <template v-if="isExist">
           <!-- необходимо указать :key, т.к. Vue отслеживает, если элементы одинаковые, то он будет пытаться оптимизировать и убрать повторяющиеся элементы -->
@@ -10,6 +10,7 @@
             <MovieItem
               :movie="movie"
               @mouseover.native="onMouseOver(movie.Poster)"
+              @removeItem="onRemoveItem"
             />
           </BCol>
         </template>
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import MovieItem from "./MovieItem";
 
 export default {
@@ -37,14 +39,28 @@ export default {
     MovieItem,
   },
   computed: {
+    ...mapGetters('movies', ['isSearch']),
     isExist() {
       // проверка, пустой ли объект (! проверки лучше выносить в computed, если они загромождают разметку)
       return Boolean(Object.keys(this.list).length);
     },
+    listTitle() {
+      return this.isSearch ? "Search result" : "IMDB Top 250"
+    }
   },
   methods: {
+    ...mapActions("movies", ["removeMovie"]),
     onMouseOver(poster) {
       this.$emit("changePoster", poster);
+    },
+    async onRemoveItem({ id, title }) {
+      const isConfirmed = await this.$bvModal.msgBoxConfirm(
+        `Are you sure remove ${title}?`
+      );
+
+      if (isConfirmed) {
+        this.removeMovie(id);
+      }
     },
   },
 };

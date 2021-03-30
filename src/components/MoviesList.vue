@@ -11,6 +11,7 @@
               :movie="movie"
               @mouseover.native="onMouseOver(movie.Poster)"
               @removeItem="onRemoveItem"
+              @showModal="onShowMovieInfo"
             />
           </BCol>
         </template>
@@ -18,6 +19,14 @@
           <div>Empty list</div>
         </template>
       </BRow>
+      <BModal
+      body-class="movie-modal-body"
+      :id="movieInfoModalID"
+      size="xl"
+      hide-footer
+      hide-header>
+        <MovieInfoModalContent :movie="selectedMovie"/>
+      </BModal>
     </BContainer>
   </div>
 </template>
@@ -25,7 +34,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import MovieItem from "./MovieItem";
-
+import MovieInfoModalContent from "./MovieInfoModalContent"
 export default {
   name: "MoviesList",
   props: {
@@ -35,21 +44,30 @@ export default {
       default: () => ({}),
     },
   },
+  data: () => ({
+    movieInfoModalID: "movie-info",
+    selectedMovieID: ""
+  }),
   components: {
     MovieItem,
+    MovieInfoModalContent
   },
   computed: {
-    ...mapGetters('movies', ['isSearch']),
+    ...mapGetters("movies", ["isSearch"]),
     isExist() {
       // проверка, пустой ли объект (! проверки лучше выносить в computed, если они загромождают разметку)
       return Boolean(Object.keys(this.list).length);
     },
     listTitle() {
-      return this.isSearch ? "Search result" : "IMDB Top 250"
+      return this.isSearch ? "Search result" : "IMDB Top 250";
+    },
+    selectedMovie() {
+      return this.selectedMovieID ? this.list[this.selectedMovieID] : null
     }
   },
   methods: {
     ...mapActions("movies", ["removeMovie"]),
+    ...mapActions(["showNotify"]),
     onMouseOver(poster) {
       this.$emit("changePoster", poster);
     },
@@ -57,11 +75,19 @@ export default {
       const isConfirmed = await this.$bvModal.msgBoxConfirm(
         `Are you sure remove ${title}?`
       );
-
       if (isConfirmed) {
         this.removeMovie(id);
+        this.showNotify({
+          msg: "Movie deleted successful",
+          variant: "success",
+          title: "Success",
+        });
       }
     },
+    onShowMovieInfo(id) {
+      this.selectedMovieID = id;
+      this.$bvModal.show(this.movieInfoModalID)
+    }
   },
 };
 </script>
@@ -72,5 +98,11 @@ export default {
   margin-bottom: 30px;
   color: #fff;
   text-align: center;
+}
+</style>
+
+<style>
+.movie-modal-body {
+  padding: 0 !important;
 }
 </style>

@@ -18,7 +18,7 @@ const moviesStore = {
     moviesPerPage: 12,
     currentPage: 1,
     movies: {},
-    isSearch: false // маркер в state о том, что сейчас происходит search (нужно для изменения IMDB Top 250)
+    isSearch: false, // маркер в state о том, что сейчас происходит search (нужно для изменения IMDB Top 250)
   },
   getters: {
     moviesList: ({ movies }) => movies,
@@ -44,15 +44,6 @@ const moviesStore = {
     },
   },
   actions: {
-    initMoviesStore: {
-      // рутовый action (для вызова из store/index.js)
-      handler({ dispatch }) {
-        // dispatch позволяет вызвать любой action из текущей store
-        // теперь можно использовать несколько dispatch, т.к. есть "обёртка"
-        dispatch("fetchMovies");
-      },
-      root: true, // это означает, что данный метод будет вынесен из модуля и будет доступен откуда угодно
-    },
     async fetchMovies({ getters, commit, dispatch }) {
       try {
         dispatch("toggleLoader", true, { root: true });
@@ -90,20 +81,28 @@ const moviesStore = {
         const response = await axios.get(`/?s=${query}`);
 
         if (response.Error) {
-          throw Error(response.Error)
+          throw Error(response.Error);
         }
         const movies = serializeResponse(response.Search);
         commit(MOVIES, movies);
-        console.log(response)
       } catch (err) {
-        console.log(err)
+        console.log(err.message);
+        dispatch(
+          "showNotify",
+          {
+            msg: err.message,
+            title: "Error",
+            variant: "danger",
+          },
+          { root: true } // <= если не указать, нотификации не будут работать
+        );
       } finally {
         dispatch("toggleLoader", false, { root: true });
       }
     },
     toggleSearchState({ commit }, bool) {
       commit(TOGGLE_SEARCH, bool);
-    }
+    },
   },
 };
 

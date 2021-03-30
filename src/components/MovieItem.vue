@@ -8,7 +8,7 @@
       </div>
       <div class="movie-item-controls row no-gutters">
         <div class="col pr-2">
-          <BButton size="md" block variant="outline-light">Edit</BButton>
+          <BButton size="md" block variant="outline-light" @click="showInfoModalEvent">Info</BButton>
         </div>
         <div class="col pl-2">
           <BButton
@@ -47,6 +47,9 @@ export default {
         title: this.movie.Title,
       });
     },
+    showInfoModalEvent() {
+      this.$emit("showModal", this.movie.imdbID)
+    }
   },
 };
 </script>
@@ -64,7 +67,6 @@ export default {
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.7);
   transform: scale(1.02);
 }
-
 .movie-info-wrap {
   padding: 20px 10px;
   height: 100%;
@@ -74,7 +76,6 @@ export default {
   opacity: 0;
   transition: all 0.2s ease;
 }
-
 .movie-item-poster {
   position: absolute;
   top: 0;
@@ -86,16 +87,13 @@ export default {
   background-position: center;
   z-index: -1;
 }
-
 .movie-item:hover .movie-info-wrap {
   opacity: 1;
 }
-
 .movie-title {
   font-size: 18px;
   color: #fff;
 }
-
 .movie-year {
   font-size: 14px;
   color: #fff;

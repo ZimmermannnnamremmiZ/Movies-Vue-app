@@ -40,7 +40,6 @@ export default {
   background-position: center;
   transition: all 0.2s ease;
 }
-
 .poster-page-bg::before {
   content: "";
   position: absolute;

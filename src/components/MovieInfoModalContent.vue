@@ -51,7 +51,8 @@
               <tr>
                 <th>Actors</th>
                 <td>{{ movie.Actors }}</td>
-              </tr>              <tr>
+              </tr>
+              <tr>
                 <th>Awards</th>
                 <td>{{ movie.Awards }}</td>
               </tr>
@@ -74,7 +75,7 @@ export default {
   },
   methods: {
     closeModal() {
-      this.$emit('closeModal')
+      this.$emit("closeModal");
     },
   },
   data: () => ({
@@ -162,6 +163,6 @@ export default {
 }
 .close-icon {
   font-size: 24px;
-  cursor: pointer
+  cursor: pointer;
 }
 </style>

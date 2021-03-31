@@ -26,7 +26,10 @@
         hide-footer
         hide-header
       >
-        <MovieInfoModalContent :movie="selectedMovie" @closeModal="onCloseModal" />
+        <MovieInfoModalContent
+          :movie="selectedMovie"
+          @closeModal="onCloseModal"
+        />
       </BModal>
     </BContainer>
   </div>
@@ -90,8 +93,8 @@ export default {
       this.$bvModal.show(this.movieInfoModalID);
     },
     onCloseModal() {
-      this.$bvModal.hide(this.movieInfoModalID)
-    }
+      this.$bvModal.hide(this.movieInfoModalID);
+    },
   },
 };
 </script>

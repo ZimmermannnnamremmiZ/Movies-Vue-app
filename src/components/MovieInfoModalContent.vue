@@ -195,8 +195,9 @@ export default {
     font-size: 1rem;
   }
 
-  .b-rating-star, .b-rating-value {
-    font-size: 1.1rem ;
+  .movie-rating >>> .b-rating-star,
+  .movie-rating >>> .b-rating-value {
+    font-size: 1.1rem;
   }
 }
 
@@ -222,8 +223,12 @@ export default {
   .form-control {
     width: auto;
   }
-}
 
+  .movie-rating >>> .b-rating-star,
+  .movie-rating >>> .b-rating-value {
+    font-size: 0.9rem;
+  }
+}
 
 @media screen and (max-width: 450.5px) {
   .movie-title {
@@ -233,7 +238,13 @@ export default {
   .movie-description {
     font-size: 0.8rem;
   }
+
+  .movie-rating >>> .b-rating-star,
+  .movie-rating >>> .b-rating-value {
+    font-size: 0.7rem;
+  }
 }
+
 @media screen and (max-width: 370.5px) {
   .movie-rating >>> .b-rating-star + .b-rating-star {
     margin-left: 1px;
@@ -246,27 +257,11 @@ export default {
 </style>
 
 <style>
+
 @media screen and (max-width: 991.5px) {
   .modal-dialog {
     max-width: 100% !important;
   }
 }
 
-@media screen and (max-width: 767.5px) {
-  .movie-rating[data-v-ebc9b9ac] .b-rating-star, .movie-rating[data-v-ebc9b9ac] .b-rating-value {
-    font-size: 1.1rem;
-  }
-}
-
-@media screen and (max-width: 575.5px) {
-  .movie-rating[data-v-ebc9b9ac] .b-rating-star, .movie-rating[data-v-ebc9b9ac] .b-rating-value {
-    font-size: 0.9rem;
-  }
-}
-
-@media screen and (max-width: 450.5px) {
-  .movie-rating[data-v-ebc9b9ac] .b-rating-star, .movie-rating[data-v-ebc9b9ac] .b-rating-value {
-    font-size: 0.7rem;
-  }
-}
 </style>

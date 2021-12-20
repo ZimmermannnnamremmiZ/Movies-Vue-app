@@ -165,4 +165,108 @@ export default {
   font-size: 24px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 1199.5px) {
+  .movie-title {
+    font-size: 2rem;
+  }
+
+  .movie-description {
+    font-size: 1.15rem;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .movie-title {
+    font-size: 1.5rem;
+  }
+
+  .movie-info-content >>> .col-sm-4 {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+
+  .movie-info-content >>> .col-sm-8 {
+    flex: 0 0 55%;
+    max-width: 55%;
+  }
+
+  .movie-description {
+    font-size: 1rem;
+  }
+
+  .b-rating-star, .b-rating-value {
+    font-size: 1.1rem ;
+  }
+}
+
+@media screen and (max-width: 575.5px) {
+  .row {
+    display: block;
+  }
+
+  .movie-info-content >>> .col-sm-4 {
+    max-width: 45%;
+    float: left;
+  }
+
+  .movie-info-content >>> .mb-3,
+  .my-3 {
+    margin-bottom: 0 !important;
+  }
+
+  .movie-info-content >>> .col-sm-8 {
+    max-width: none;
+  }
+
+  .form-control {
+    width: auto;
+  }
+}
+
+
+@media screen and (max-width: 450.5px) {
+  .movie-title {
+    font-size: 1.2rem;
+  }
+
+  .movie-description {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 370.5px) {
+  .movie-rating >>> .b-rating-star + .b-rating-star {
+    margin-left: 1px;
+  }
+
+  .movie-rating >>> .b-rating-value {
+    margin-left: 5px;
+  }
+}
+</style>
+
+<style>
+@media screen and (max-width: 991.5px) {
+  .modal-dialog {
+    max-width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .movie-rating[data-v-ebc9b9ac] .b-rating-star, .movie-rating[data-v-ebc9b9ac] .b-rating-value {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 575.5px) {
+  .movie-rating[data-v-ebc9b9ac] .b-rating-star, .movie-rating[data-v-ebc9b9ac] .b-rating-value {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 450.5px) {
+  .movie-rating[data-v-ebc9b9ac] .b-rating-star, .movie-rating[data-v-ebc9b9ac] .b-rating-value {
+    font-size: 0.7rem;
+  }
+}
 </style>

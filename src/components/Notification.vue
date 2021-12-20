@@ -16,7 +16,7 @@ export default {
     showNotification({ variant, msg, title }) {
       this.$bvToast.toast(msg, {
         title, // сократили запись (title: title)
-        variant, // сократили запись (variant: variant)
+        variant, // аналогично
         solid: true,
       });
     },

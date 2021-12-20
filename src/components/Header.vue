@@ -8,7 +8,7 @@
             class="mr-sm-2 search-input"
             placeholder="Search"
             v-model="searchValue"
-            debouce="500"
+            debounce="500"
           ></BFormInput>
         </BNavForm>
       </BContainer>
@@ -43,7 +43,6 @@ export default {
         this.fetchMovies(); //для возврата фильмов после удаления текста в инпуте search
         this.toggleSearchState(false);
       }
-      this.searchMovies(val);
     },
   },
 };
@@ -54,12 +53,7 @@ export default {
   margin-bottom: 30px;
 }
 .navbar {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.7
-  ) !important; /* bootstrap задает через important фон на navbar */
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }
 .search-input {
   color: #fff;

@@ -104,4 +104,19 @@ export default {
   font-size: 14px;
   color: #fff;
 }
+
+@media screen and (max-width: 450.5px) {
+  .movie-item-controls {
+    flex-direction: column;
+  }
+
+  .movie-item-controls >>> .pr-2 {
+    padding: 0 !important;
+    margin-bottom: 5px;
+  }
+
+    .movie-item-controls >>> .pl-2 {
+    padding: 0 !important;
+  }
+}
 </style>

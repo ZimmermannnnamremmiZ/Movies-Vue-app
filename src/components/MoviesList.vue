@@ -106,6 +106,54 @@ export default {
   color: #fff;
   text-align: center;
 }
+
+@media screen and (max-width: 991.5px) {
+  .col-3 {
+    flex: 0 0 33%;
+    max-width: 33%;
+  }
+
+  .list-title {
+    font-size: 40px;
+  }
+
+  .movie-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .col-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 575.5px) {
+  .col-3 {
+    flex: 0 0 48%;
+    max-width: 48.5%;
+    padding: 0;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .movie-item {
+    height: 330px;
+  }
+
+  .list-title {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 469px) {
+  .movie-item-controls {
+    flex-direction: column;
+  }
+}
 </style>
 
 <style>
